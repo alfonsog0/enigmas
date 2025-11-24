@@ -138,7 +138,7 @@ int highest_scoring_word_from_tiles(const char* tiles, ScoreModifier score_modif
     int max_score = 0;
     int current_score = 0;
     while (file.getline(buffer, sizeof(buffer))) {
-        if (can_form_word_from_tiles(tiles, buffer, p_word)) {
+        if (can_form_word_from_tiles(buffer, tiles, p_word)) {
             current_score = compute_score(buffer, score_modifiers);
             if (current_score > max_score) {
                 max_score = current_score;
