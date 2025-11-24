@@ -4,3 +4,6 @@ enum ScoreModifier { NONE, DOUBLE_LETTER_SCORE, TRIPLE_LETTER_SCORE, DOUBLE_WORD
 int tile_score(char letter);
 
 bool can_form_word_from_tiles(char* word, char* tiles, char* played_tiles);
+
+void apply_modifier(ScoreModifier score_modifiers[], const char* played_tiles, int index, int& score);
+int compute_score(const char* played_tiles, ScoreModifier score_modifiers[]);
