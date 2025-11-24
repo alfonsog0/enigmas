@@ -31,8 +31,8 @@ int tile_score(char letter) {
     }
 }
 
-bool can_form_word_from_tiles(char* word, char* tiles, char* played_tiles) {
-    char* word_ptr = word;
+bool can_form_word_from_tiles(const char* word, const char* tiles, char* played_tiles) {
+    const char* word_ptr = word;
     char tiles_copy[80];
     strcpy(tiles_copy, tiles);
     
@@ -42,7 +42,7 @@ bool can_form_word_from_tiles(char* word, char* tiles, char* played_tiles) {
         return true;
     }
     int bonus = 0;
-    char* tiles_ptr1 = tiles;
+    const char* tiles_ptr1 = tiles;
     while (*tiles_ptr1 != '\0') {
         if (*tiles_ptr1 == '?') {
             bonus++;
@@ -124,4 +124,28 @@ int compute_score(const char* played_tiles, ScoreModifier score_modifiers[]) {
         total += 50;
     }
     return total;
+}
+
+int highest_scoring_word_from_tiles(const char* tiles, ScoreModifier score_modifiers[], char* word) {
+    ifstream file("words.txt");
+    char buffer[256];
+    char p_word[256];
+
+    if (!file) {
+        cerr << "Could not open file" << endl;
+    }
+
+    int max_score = 0;
+    int current_score = 0;
+    while (file.getline(buffer, sizeof(buffer))) {
+        if (can_form_word_from_tiles(tiles, buffer, p_word)) {
+            current_score = compute_score(buffer, score_modifiers);
+            if (current_score > max_score) {
+                max_score = current_score;
+                strcpy(word, p_word);
+            }
+        }
+    }
+    if (max_score == 0) return -1;
+    return max_score;
 }
