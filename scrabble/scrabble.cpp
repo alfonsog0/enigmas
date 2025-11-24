@@ -31,3 +31,121 @@ int tile_score(char letter) {
     }
 }
 
+// bool can_form_word_from_tiles(char* word, char* tiles, char* played_tiles) {
+//     char* word_ptr = word;
+//     char tiles_copy[80];
+//     strcpy(tiles_copy, tiles);
+//     // base case
+//     cout << "WORD PROGRESSION: " << *word_ptr << endl;
+//     if (*word_ptr == '\0') {
+//         cout << "I AM HEREEEEEEEE ---------------------" << endl;
+//         *played_tiles = '\0';
+//         return true;
+//     }
+//     int bonus = 0;
+//     char* tiles_ptr1 = tiles;
+//     while (*tiles_ptr1 != '\0') {
+//         if (*tiles_ptr1 == ' ' || *tiles_ptr1 == '?') {
+//             bonus++;
+//         }
+//         tiles_ptr1++;
+//     }
+//     cout << "0000000: " << bonus << endl;
+
+//     if (*word_ptr != '\0') {
+//         char* tiles_ptr = tiles;
+//         while (*tiles_ptr != '\0' && *word_ptr != '\0') {
+//             if (*word_ptr == *tiles_ptr) {
+//                 // make the used tile unavail for next turns
+//                 //*tiles_ptr = ' ';
+
+//                 *played_tiles = *word_ptr;
+//                 cout << "1111111: " << *played_tiles << endl; 
+//                 //played_tiles = played_tiles + 1;
+//                 bool ok = can_form_word_from_tiles(word + 1, tiles, played_tiles + 1);
+//                 if (ok) return true;
+//             } 
+//             // else if (*tiles_ptr == '\0' && bonus > 0) {
+//             //     // make the used tile unavail for next turns
+//             //     //*tiles_ptr = ' ';
+//             //     *played_tiles = ' ';
+//             //     cout << "2222222: " << *played_tiles << endl;
+//             //     //played_tiles = played_tiles + 1;
+//             //     bool ok1 = can_form_word_from_tiles(word + 1, tiles, played_tiles + 1);
+//             //     bonus--;
+//             //     if (ok1) return true;
+//             // }
+//             tiles_ptr++;
+//         }
+//         if (*tiles_ptr == '\0' && bonus > 0) {
+//                 // make the used tile unavail for next turns
+//                 //*tiles_ptr = ' ';
+//                 *played_tiles = ' ';
+//                 cout << "2222222: " << *played_tiles << endl;
+//                 //played_tiles = played_tiles + 1;
+//                 bool ok1 = can_form_word_from_tiles(word + 1, tiles, played_tiles + 1);
+//                 bonus--;
+//                 if (ok1) return true;
+//         //return false;
+//         }
+//     }
+//     *played_tiles = '\0';
+//     return true;
+// }
+
+// i cant use the bonus at the first occurrence where the letter is not there, I have to use it if the tiles are all searched
+
+bool can_form_word_from_tiles(char* word, char* tiles, char* played_tiles) {
+    char* word_ptr = word;
+    char tiles_copy[80];
+    strcpy(tiles_copy, tiles);
+    
+    // base case
+    if (*word_ptr == '\0') {
+        *played_tiles = '\0';
+        return true;
+    }
+    int bonus = 0;
+    char* tiles_ptr1 = tiles;
+    while (*tiles_ptr1 != '\0') {
+        if (*tiles_ptr1 == '?') {
+            bonus++;
+        }
+        tiles_ptr1++;
+    }
+
+    if (*word_ptr != '\0') {
+        char* tiles_ptr = tiles_copy;
+        while (*tiles_ptr != '\0' && *word_ptr != '\0') {
+            if (*word_ptr == *tiles_ptr) {
+                // make the used tile unavail for next turns
+                *tiles_ptr = '*';
+
+                *played_tiles = *word_ptr;
+                bool ok = can_form_word_from_tiles(word + 1, tiles_copy, played_tiles + 1);
+                if (ok) return true;
+            } 
+            tiles_ptr++;
+        }
+        if (*tiles_ptr == '\0' && bonus > 0) {
+            // make the used tile unavail for next turns
+            *tiles_ptr = '*';
+            *played_tiles = '?';
+            char* tiles_ptr2 = tiles_copy;
+            while (*tiles_ptr2 != '\0') {
+                if (*tiles_ptr2 == '?') {
+                    *tiles_ptr2 = '*';
+                }
+                tiles_ptr2++;
+            }
+            bool ok1 = can_form_word_from_tiles(word + 1, tiles_copy, played_tiles + 1);
+            bonus--;
+            if (ok1) return true;
+        }
+        return false;
+    }
+    *played_tiles = '\0';
+    return true;
+}
+
+// i cant use the bonus at the first occurrence where the letter is not there, I have to use it if the tiles are all searched
