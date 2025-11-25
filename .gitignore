@@ -4,3 +4,11 @@
 *.exe
 build/
 spec.pdf
+
+# Ignore executables (files with no extension)
+*
+!*/
+!*/Makefile
+!*/*.cpp
+!*/*.h
+!*/*.txt
