@@ -46,3 +46,28 @@ bool valid_step(const char* current_word, const char* next_word) {
 
    return true;
 }
+
+bool display_chain(const char* chain[], ostream& output_stream) {
+   // malformed input
+   if (chain == nullptr) return false;
+
+   int len = 0;
+   while (chain[len] != NULL) len++;
+
+   for (int i = 0; i < len; i++) {
+      const char* word = chain[i];
+
+      // if NULL appears before the end -> malformed chain
+      if (word == NULL) return false;
+
+      if (i == 0 || i == len - 1) {
+         output_stream << word;
+      } else {
+         for (int j = 0; word[j] != '\0'; j++) {
+            output_stream << char(tolower(word[j]));
+         }
+      }
+      output_stream << endl;
+   }
+   return true;
+}
