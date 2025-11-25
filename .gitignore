@@ -12,3 +12,6 @@ spec.pdf
 !*/*.cpp
 !*/*.h
 !*/*.txt
+
+# output files
+doublets/chain.txt
