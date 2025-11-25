@@ -71,3 +71,18 @@ bool display_chain(const char* chain[], ostream& output_stream) {
    }
    return true;
 }
+
+bool valid_chain(const char* chain[]) {
+   int len = 0;
+   while(chain[len] != NULL) len++;
+
+   // chain must have at least 3 words
+   if (len < 2) return false;
+
+   for (int i = 0; i < len - 1; i++) {
+      if(!valid_step(chain[i], chain[i+1])) return false;
+      // chack repeated words
+      if (strcmp(chain[i], chain[i+1]) == 0) return false;
+   }
+   return true;
+}
