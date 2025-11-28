@@ -86,3 +86,105 @@ bool valid_chain(const char* chain[]) {
    }
    return true;
 }
+
+void get_neighbours(const char* current_word, char neighbours[][MAX_WORD_LEN + 1], int& count) {
+   count = 0;
+
+   int len = strlen(current_word);
+   if (len > MAX_WORD_LEN) return;  // safety
+
+   char buffer[MAX_WORD_LEN + 1];
+
+   for (int i = 0; i < len; i++) {
+      strcpy(buffer, current_word);
+      char original = buffer[i];
+
+      for (char letter_option = 'A'; letter_option <= 'Z'; letter_option++){
+         if (letter_option == original) continue;
+
+         buffer[i] = letter_option;
+         if (dictionary_search(buffer)) {
+            strcpy(neighbours[count], buffer);
+            count++;
+         }
+      }
+   }
+}
+
+bool dfs(const char* current, const char* target) {
+   // base case
+   if (strcmp(current, target) == 0) return true;
+   char neighbours[MAX_NEIGHBOURS][MAX_WORD_LEN + 1];
+   int count = 0;
+   get_neighbours(current, neighbours, count);
+   for (int i = 0; i < count; i++) {
+      if (dfs(neighbours[i], target)) {
+         return true;
+      }
+   }
+   return false;
+}
+
+bool dfs(const char* current, const char* target, int remaining_steps) {
+   if (remaining_steps <= 0) return false;
+   // base case
+   if (strcmp(current, target) == 0) return true;
+   char neighbours[MAX_NEIGHBOURS][MAX_WORD_LEN + 1];
+   int count = 0;
+   get_neighbours(current, neighbours, count);
+   for (int i = 0; i < count; i++) {
+      if (dfs(neighbours[i], target, remaining_steps - 1)) {
+         return true;
+      }
+   }
+   return false;
+}
+
+bool dfs(const char* current, const char* target, char answer_chain[][MAX_WORD_LEN + 1], int current_len, int remaining_steps) {
+   // base case
+   if (strcmp(current, target) == 0) return true;
+   if (remaining_steps <= 0) return false;
+
+   char neighbours[MAX_NEIGHBOURS][MAX_WORD_LEN + 1];
+   int count = 0;
+   get_neighbours(current, neighbours, count);
+
+
+   for (int i = 0; i < count; i++) {
+      bool already_checked = false;
+      for (int j = 0; j < current_len; j++) {
+         if (strcmp(neighbours[i], answer_chain[j]) == 0) 
+            already_checked = true;
+      }
+      if (!already_checked) {
+         strcpy(answer_chain[current_len], neighbours[i]); 
+         if (dfs(neighbours[i], target, answer_chain, current_len + 1 , remaining_steps - 1)) {
+            return true;
+         }
+      }
+   }
+   return false;
+}
+
+bool find_chain(const char* start_word, const char* target_word, const char* answer_chain[], int max_steps) {
+   //char answer_chain_ch[max_steps][MAX_WORD_LEN+1];
+   strcpy(chain_storage[0], start_word);
+   // clear it and make unused rows null terminated
+   for (int i = 1; i < MAX_CHAIN_LEN; i++) {
+      chain_storage[i][0] = '\0';
+   }
+
+   bool ok = dfs(start_word, target_word, chain_storage, 1, max_steps);
+
+   if (!ok) return false;
+
+   int len = 0;
+   while (len < MAX_CHAIN_LEN && chain_storage[len][0] != '\0') len++;
+
+   for (int i = 0; i < len; i++) {
+      answer_chain[i] = chain_storage[i];
+   }
+   answer_chain[len] = NULL;
+
+   return true;
+}

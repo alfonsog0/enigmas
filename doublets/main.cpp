@@ -69,54 +69,68 @@ int main()
   valid = valid_chain(short_chain);
   cout << "The chain 'WHEAT' is " << (valid ? "" : "NOT ") << "a valid chain." << endl << endl;
   
-  // cout << "====================== Question 4 ======================" << endl << endl;
+  cout << "====================== Question 4 ======================" << endl << endl;
 
-  // const char *answer[100];
+  // char neighbours[MAX_NEIGHBOURS][MAX_WORD_LEN + 1];
+  // int neighbour_count = 0;
+  // char answer_chain[MAX_STEPS][MAX_WORD_LEN + 1];
 
-  // /* can you go from WET to DRY in up to 4 steps */
-  // success = find_chain("WET", "DRY", answer, 4);
-  // cout << (success ? "Found" : "Could not find") << " a chain from 'WET' to 'DRY' with up to 4 steps"<< endl;
+  // char* out_array[1000000];
+  // get_neighbours("HARD", neighbours, neighbour_count);
 
-  // if (success)
-  //   display_chain(answer, cout);
-  // cout << endl;
+  // for (int i = 0; i < neighbour_count; ++i) {
+  //   cout << neighbours[i] << '\n';
+  // }
+
+  // bool ok = dfs("TEA", "HOT", answer_chain, 0, MAX_STEPS);
+  // cout << "CHAIN " << (ok ? "" : "NOT ") << "CLOSED" << endl;
+
+  const char *answer[100];
+
+  /* can you go from WET to DRY in up to 4 steps */
+  success = find_chain("WET", "DRY", answer, 4);
+  cout << (success ? "Found" : "Could not find") << " a chain from 'WET' to 'DRY' with up to 4 steps"<< endl;
+
+  if (success)
+    display_chain(answer, cout);
+  cout << endl;
   
-  // /* can you turn a HARD problem into an EASY one in up to 5 steps */
-  // success = find_chain("HARD", "EASY", answer, 5);
-  // cout << (success ? "Found" : "Could not find") << " a chain from 'HARD' to 'EASY' with up to 5 steps"<< endl;
+  /* can you turn a HARD problem into an EASY one in up to 5 steps */
+  success = find_chain("HARD", "EASY", answer, 5);
+  cout << (success ? "Found" : "Could not find") << " a chain from 'HARD' to 'EASY' with up to 5 steps"<< endl;
 
-  // if (success)
-  //   display_chain(answer, cout);
-  // cout << endl;
+  if (success)
+    display_chain(answer, cout);
+  cout << endl;
 
-  // /* can you evolve APE into MAN in up to 6 steps? */
-  // success = find_chain("APE", "MAN", answer, 6);
-  // cout << (success ? "Found" : "Could not find") << " a chain from 'APE' to 'MAN' with up to 6 steps"<< endl;
+  /* can you evolve APE into MAN in up to 6 steps? */
+  success = find_chain("APE", "MAN", answer, 6);
+  cout << (success ? "Found" : "Could not find") << " a chain from 'APE' to 'MAN' with up to 6 steps"<< endl;
 
-  // if (success)
-  //   display_chain(answer, cout);
-  // cout << endl;
+  if (success)
+    display_chain(answer, cout);
+  cout << endl;
 
-  // /* can you turn BLACK into WHITE in up to 8 steps? */
-  // success = find_chain("BLACK", "WHITE", answer, 8);
-  // cout << (success ? "Found" : "Could not find") << " a chain from 'BLACK' to 'WHITE' with up to 8 steps"<< endl;
-  // if (success)
-  //   display_chain(answer, cout);
-  // cout << endl;
+  /* can you turn BLACK into WHITE in up to 8 steps? */
+  success = find_chain("BLACK", "WHITE", answer, 8);
+  cout << (success ? "Found" : "Could not find") << " a chain from 'BLACK' to 'WHITE' with up to 8 steps"<< endl;
+  if (success)
+    display_chain(answer, cout);
+  cout << endl;
   
-  // /* can you make KETTLE into HOLDER in up to 10 steps? */
-  // success = find_chain("KETTLE", "HOLDER", answer, 10);
-  // cout << (success ? "Found" : "Could not find") << " a chain from 'KETTLE' to 'HOLDER' with up to 10 steps"<< endl;
-  // if (success)
-  //   display_chain(answer, cout);
-  // cout << endl;
+  /* can you make KETTLE into HOLDER in up to 10 steps? */
+  success = find_chain("KETTLE", "HOLDER", answer, 10);
+  cout << (success ? "Found" : "Could not find") << " a chain from 'KETTLE' to 'HOLDER' with up to 10 steps"<< endl;
+  if (success)
+    display_chain(answer, cout);
+  cout << endl;
 
-  // // can you turn the WITCH into a FAIRY in up to 12 steps?
-  // success = find_chain("WITCH", "FAIRY", answer, 12);
-  // cout << (success ? "Found" : "Could not find") << " a chain from 'WITCH' to 'FAIRY' with up to 12 steps"<< endl;
-  // if (success)
-  //   display_chain(answer, cout);
-  // cout << endl;
+  // can you turn the WITCH into a FAIRY in up to 12 steps?
+  success = find_chain("WITCH", "FAIRY", answer, 12);
+  cout << (success ? "Found" : "Could not find") << " a chain from 'WITCH' to 'FAIRY' with up to 12 steps"<< endl;
+  if (success)
+    display_chain(answer, cout);
+  cout << endl;
 
   /*
   cout << "==================== Bonus Challenge ===================" << endl << endl;
