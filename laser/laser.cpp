@@ -115,22 +115,51 @@ bool find_laser(char** board, int height, int width, int& row) {
     return false;
 }
 
+// char mirror_label(char** board, int height, int width, int row, int column) {
+//     //cout << "height: " << height << endl << "width: " << width << endl;
+//     if (isspace(board[row][column])) {
+//         return '\0';
+//     }
+//     int start_row = row - 1;
+//     int start_col = column - 1;
+//     for (int r = start_row; r <= row + 1; r++) {
+//         for (int c = start_col; c <= column + 1; c++) {
+//             if (r < 0 || r >= height || c < 0 || c >= width) continue;
+//             if (isalpha(board[r][c])) {
+//                 return board[r][c];
+//             }
+//         }
+//     }
+//     return '\0';
+// }
+
 char mirror_label(char** board, int height, int width, int row, int column) {
-    //cout << "height: " << height << endl << "width: " << width << endl;
-    if (isspace(board[row][column])) {
-        return '\0';
-    }
-    int start_row = row - 1;
-    int start_col = column - 1;
-    for (int r = start_row; r <= row + 1; r++) {
-        for (int c = start_col; c <= column + 1; c++) {
-            if (r < 0 || r >= height || c < 0 || c >= width) continue;
-            if (isalpha(board[r][c])) {
-                return board[r][c];
-            }
-        }
-    }
-    return '\0';
+  //cout << "height: " << height << endl << "width: " << width << endl;
+  if (board[row][column]!= '\\' && board[row][column]!= '/') {
+      return '\0';
+  }
+
+  int dr[2];
+  int dc[2];
+  if (board[row][column] == '\\') {
+    dr[0] = -1;
+    dr[1] = 1;
+    dc[0] = -1;
+    dc[1] = 1;
+  } else if (board[row][column] == '/') {
+    dr[0] = 1;
+    dr[1] = -1;
+    dc[0] = -1;
+    dc[1] = 1;
+  }
+
+  for (int k = 0; k < 2; k++) {
+    int r = row + dr[k];
+    int c = column + dc[k];
+    if (r < 0 || r >= height || c < 0 || c >= width) continue;
+    if (isalpha(board[r][c])) return board[r][c];
+  }
+  return '\0'; 
 }
 
 void change_beam(char& beam, int& increment, char** board, int r, int c) {
@@ -242,29 +271,28 @@ bool shoot(char** board, int height, int width, char* message, int& last_row, in
     if (board[r][c] != ' ') {
       // if its a \ / rotate the beam and change the variable beam
       if (board[r][c] == '\\' || board[r][c] == '/') {
-
-          *message = mirror_label(board, height, width, r, c);
-          if (*message) {
-            message += 1;
-          }
-          change_beam(beam, increment, board, r, c);
-          if (beam == '-') { c += increment; }
-          else { r += increment; }
-          flag = true;
+        *message = mirror_label(board, height, width, r, c);
+        if (*message) {
+          message += 1;
         }
-        // if it is a question mark end
-        else if (board[r][c] == '?' || board[r][c] == '#') {
-          last_row = r;
-          last_col = c;
-          *message = '\0';
-          return false;
-        }
-        else if (board[r][c] == '@') {
-          last_row = r;
-          last_col = c;
-          *message = '\0';
-          return true;
-        }
+        change_beam(beam, increment, board, r, c);
+        if (beam == '-') { c += increment; }
+        else { r += increment; }
+        flag = true;
+      }
+      // if it is a question mark end
+      else if (board[r][c] == '?' || board[r][c] == '#') {
+        last_row = r;
+        last_col = c;
+        *message = '\0';
+        return false;
+      }
+      else if (board[r][c] == '@') {
+        last_row = r;
+        last_col = c;
+        *message = '\0';
+        return true;
+      }
     }
     if (flag == false) {
       board[r][c] = beam;
