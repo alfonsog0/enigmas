@@ -64,11 +64,11 @@ int main() {
   deallocate_2D_array(board, height);
 
   cout << "====================== Question 3 ======================" << endl << endl;
-//   board = load_board("biscuit.txt", height, width);
-//   assert(board);
-//   int last_row, last_col;
-    // char message[512];
-//   success = shoot(board, height, width, message, last_row, last_col);
+  board = load_board("biscuit.txt", height, width);
+  assert(board);
+  int last_row, last_col;
+    char message[512];
+  success = shoot(board, height, width, message, last_row, last_col);
 
   /* uncomment this if you prefer to start with a simple test case */
     /*
@@ -118,46 +118,46 @@ int main() {
     deallocate_2D_array(board, height);
   }
 
-//   cout << "====================== Question 4 ======================" << endl << endl;
+  // cout << "====================== Question 4 ======================" << endl << endl;
 
-//   char message[512];
-//   int lr, lc;
+  // char message[512];
+  // int lr, lc;
   
-//   cout << "Loading board from 'biscuit-plan.txt'... ";  
-//   board = load_board("biscuit-plan.txt", height, width);
-//   assert(board);
-//   cout << "Done!" << endl;
+  // cout << "Loading board from 'biscuit-plan.txt'... ";  
+  // board = load_board("biscuit-plan.txt", height, width);
+  // assert(board);
+  // cout << "Done!" << endl;
 
-//   cout << "Solving...";
-//   success = solve(board, height, width, "BISCUIT");
-//   cout << " Done!" << endl;
-//   print_board(board, height, width);
-//   cout << ( success ? "Solved!" : "No solution!" );
-//   check(success);
-//   cout << "Conducting shooting test...";
-//   success = shoot(board, height, width, message, lr, lc);
-//   check(success && lr == 9 && lc == 31 && !strcmp(message, "BISCUIT"));
-//   print_board(board, height, width);    
-//   deallocate_2D_array(board, height);
-//   cout << endl;
+  // cout << "Solving...";
+  // success = solve(board, height, width, "BISCUIT");
+  // cout << " Done!" << endl;
+  // print_board(board, height, width);
+  // cout << ( success ? "Solved!" : "No solution!" );
+  // check(success);
+  // cout << "Conducting shooting test...";
+  // success = shoot(board, height, width, message, lr, lc);
+  // check(success && lr == 9 && lc == 31 && !strcmp(message, "BISCUIT"));
+  // print_board(board, height, width);    
+  // deallocate_2D_array(board, height);
+  // cout << endl;
 
-//   cout << "Loading board from 'happynewyear-plan.txt'... ";  
-//   board = load_board("happynewyear-plan.txt", height, width);
-//   assert(board);
-//   cout << "Done!" << endl;
+  // cout << "Loading board from 'happynewyear-plan.txt'... ";  
+  // board = load_board("happynewyear-plan.txt", height, width);
+  // assert(board);
+  // cout << "Done!" << endl;
 
-//   cout << "Solving...";
-//   success = solve(board, height, width, "HAPPYNEWYEAR");
-//   cout << " Done!" << endl;
-//   print_board(board, height, width);
-//   cout << ( success ? "Solved!" : "No solution!" );
-//   check(success);
-//   cout << "Conducting shooting test...";
-//   success = shoot(board, height, width, message, lr, lc);
-//   check(success && lr == 13 && lc == 35 && !strcmp(message, "HAPPYNEWYEAR"));
-//   print_board(board, height, width);    
-//   deallocate_2D_array(board, height);
-//   cout << endl;
+  // cout << "Solving...";
+  // success = solve(board, height, width, "HAPPYNEWYEAR");
+  // cout << " Done!" << endl;
+  // print_board(board, height, width);
+  // cout << ( success ? "Solved!" : "No solution!" );
+  // check(success);
+  // cout << "Conducting shooting test...";
+  // success = shoot(board, height, width, message, lr, lc);
+  // check(success && lr == 13 && lc == 35 && !strcmp(message, "HAPPYNEWYEAR"));
+  // print_board(board, height, width);    
+  // deallocate_2D_array(board, height);
+  // cout << endl;
 
   cout << "========================= FIN ==========================" << endl << endl;
   

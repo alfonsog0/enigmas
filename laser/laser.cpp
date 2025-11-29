@@ -139,116 +139,225 @@ void change_beam(char& beam, int& increment, char** board, int r, int c) {
     if (board[r][c] == '/') increment *= -1;
 }
 
-bool shoot(char** board, int height, int width, char* message, int& last_row, int& last_col) {
-    int row;
-    // find the starting point
-    find_laser(board, height, width, row);
-    if (row == -1) {
-        *message = '\0';
-        return false;
-    }
+// bool shoot(char** board, int height, int width, char* message, int& last_row, int& last_col) {
+//     int row;
+//     // find the starting point
+//     find_laser(board, height, width, row);
+//     if (row == -1) {
+//         *message = '\0';
+//         return false;
+//     }
     
-    int r = row;
-    int c = 1;
-    char beam = '-';
-    int increment = 1;
-    // loop throuugh the board from the starting point
-    while (beam == '-' && c < width && c >= 0 && r < height && r >= 0) {
-        bool flag = false;
-        if (r < height && r >= 0 && c >= 0 && board[r][c] != ' ') {
-            // if its a \ / rotate the beam and change the variable beam
-            if (board[r][c] == '\\' || board[r][c] == '/') {
+//     int r = row;
+//     int c = 1;
+//     char beam = '-';
+//     int increment = 1;
+//     // loop through the board from the starting point
+//     while (beam == '-' && c < width && c >= 0 && r < height && r >= 0) {
+//         bool flag = false;
+//         if (r < height && r >= 0 && c >= 0 && board[r][c] != ' ') {
+//             // if its a \ / rotate the beam and change the variable beam
+//             if (board[r][c] == '\\' || board[r][c] == '/') {
 
-                *message = mirror_label(board, height, width, r, c);
-                if (*message) {
-                    message += 1;
-                }
-                change_beam(beam, increment, board, r, c);
-                r += increment;
-                flag = true;
-                //continue;
-            }
-            // if it is a question mark end
-            else if (r < height && r >= 0 && c >= 0 && (board[r][c] == '?' || board[r][c] == '#')) {
-                last_row = r;
-                last_col = c;
-                *message = '\0';
-                return false;
-            }
-            else if (r < height && r >= 0 && c >= 0 && board[r][c] == '@') {
-                last_row = r;
-                last_col = c;
-                *message = '\0';
-                return true;
-            }
-        }
-        if (flag == false && r < height && r >= 0 && c < width && c >= 0) {
-            board[r][c] = beam;
-            c += increment;
-        }
+//                 *message = mirror_label(board, height, width, r, c);
+//                 if (*message) {
+//                     message += 1;
+//                 }
+//                 change_beam(beam, increment, board, r, c);
+//                 r += increment;
+//                 flag = true;
+//                 //continue;
+//             }
+//             // if it is a question mark end
+//             else if (r < height && r >= 0 && c >= 0 && (board[r][c] == '?' || board[r][c] == '#')) {
+//                 last_row = r;
+//                 last_col = c;
+//                 *message = '\0';
+//                 return false;
+//             }
+//             else if (r < height && r >= 0 && c >= 0 && board[r][c] == '@') {
+//                 last_row = r;
+//                 last_col = c;
+//                 *message = '\0';
+//                 return true;
+//             }
+//         }
+//         if (flag == false && r < height && r >= 0 && c < width && c >= 0) {
+//             board[r][c] = beam;
+//             c += increment;
+//         }
         
-        while (beam == '|' && r < height && r >= 0 && c < width && c >= 0) {
-            // if the position in the board is not a whitespace:
-            if (r < height && r >= 0 && c >= 0 && board[r][c] != ' ') {
-                // if its a \ / rotate the beam and change the variable beam
-                if (board[r][c] == '\\' || board[r][c] == '/') {
-                    *message = mirror_label(board, height, width, r, c);
-                    if (*message) {
-                        message += 1;
-                    }
-                    change_beam(beam, increment, board, r, c);
-                    c += increment;
-                    continue;
-                }
-                // if it is a question mark end
-                else if (r < height && r >= 0 && c >= 0 && (board[r][c] == '?' || board[r][c] == '#')) {
-                    last_row = r;
-                    last_col = c;
-                    *message = '\0';
-                    return false;
-                }
-                else if (r < height && r >= 0 && c >= 0 && board[r][c] == '@') {
-                    last_row = r;
-                    last_col = c;
-                    *message = '\0';
-                    return true;
-                }
-            }
-            if (r < height && r >= 0 && c < width && c >= 0) {
-                board[r][c] = beam;
-                r += increment;
-            }
-        }
-    } 
-    return false;
-}
-
-// bool solve(char** board, int height, int width, char* target) {
-//     // how do i update lr and lc in recursive calls?
-//     int lr = 0, lc = 0;
-//     if (shoot(board, height, width, target, lr, lc)) {
-//         return true;
-//     }
-//     char symbols[3] = {'\\', '/', ' '};
-//     for (int i = 0; i < 3; i++) {
-//         // recursive backtrackin
-//         // l'ultima cella della chiamata precedente (=?) fa ripartire lo shoot
-//         board[lr][lc] = symbols[i];
-
-//     }
-//     // stub
+//         while (beam == '|' && r < height && r >= 0 && c < width && c >= 0) {
+//             // if the position in the board is not a whitespace:
+//             if (r < height && r >= 0 && c >= 0 && board[r][c] != ' ') {
+//                 // if its a \ / rotate the beam and change the variable beam
+//                 if (board[r][c] == '\\' || board[r][c] == '/') {
+//                     *message = mirror_label(board, height, width, r, c);
+//                     if (*message) {
+//                         message += 1;
+//                     }
+//                     change_beam(beam, increment, board, r, c);
+//                     c += increment;
+//                     continue;
+//                 }
+//                 // if it is a question mark end
+//                 else if (r < height && r >= 0 && c >= 0 && (board[r][c] == '?' || board[r][c] == '#')) {
+//                     last_row = r;
+//                     last_col = c;
+//                     *message = '\0';
+//                     return false;
+//                 }
+//                 else if (r < height && r >= 0 && c >= 0 && board[r][c] == '@') {
+//                     last_row = r;
+//                     last_col = c;
+//                     *message = '\0';
+//                     return true;
+//                 }
+//             }
+//             if (r < height && r >= 0 && c < width && c >= 0) {
+//                 board[r][c] = beam;
+//                 r += increment;
+//             }
+//         }
+//     } 
 //     return false;
 // }
 
-bool solve(char** board, int height, int width, char* target) {
-    // how do i update lr and lc in recursive calls?
-    int lr = 0, lc = 0;
-    // base case
-    // if (board[lr][lc] == '@')
-    if (shoot(board, height, width, target, lr, lc)) {
-        return true;
+bool shoot(char** board, int height, int width, char* message, int& last_row, int& last_col) {
+  int row;
+  // find the starting point
+  find_laser(board, height, width, row);
+  if (row == -1) {
+    *message = '\0';
+    return false;
+  }
+  
+  int r = row;
+  int c = 1;
+  char beam = '-';
+  int increment = 1;
+  // loop through the board from the starting point
+  while (c < width && c >= 0 && r < height && r >= 0) {
+    bool flag = false;
+    if (board[r][c] != ' ') {
+      // if its a \ / rotate the beam and change the variable beam
+      if (board[r][c] == '\\' || board[r][c] == '/') {
+
+          *message = mirror_label(board, height, width, r, c);
+          if (*message) {
+            message += 1;
+          }
+          change_beam(beam, increment, board, r, c);
+          if (beam == '-') { c += increment; }
+          else { r += increment; }
+          flag = true;
+        }
+        // if it is a question mark end
+        else if (board[r][c] == '?' || board[r][c] == '#') {
+          last_row = r;
+          last_col = c;
+          *message = '\0';
+          return false;
+        }
+        else if (board[r][c] == '@') {
+          last_row = r;
+          last_col = c;
+          *message = '\0';
+          return true;
+        }
     }
-    else {
-        solve_recursive(board, height, width, target, lr, lc);
+    if (flag == false) {
+      board[r][c] = beam;
+      if (beam == '-') { c += increment; }
+      else { r += increment; }
     }
+  } 
+  return false;
 }
+
+// /* starts from last_row and last_col to find a new path*/
+// bool shoot_question(char** board, int height, int width, char* message, char& beam, int& increment, int& last_row, int& last_col) {
+//   int r = last_row;
+//   int c = last_col;
+//   //char beam = '-';
+//   //int increment = 1;
+//   // loop through the board from the starting point
+//   while (c < width && c >= 0 && r < height && r >= 0) {
+//     bool flag = false;
+//     if (r < height && r >= 0 && c >= 0 && board[r][c] != ' ') {
+//       // if its a \ / rotate the beam and change the variable beam
+//       if (board[r][c] == '\\' || board[r][c] == '/') {
+//         // *message = mirror_label(board, height, width, r, c);
+//         // if (*message) {
+//         //     message += 1;
+//         // }
+//         change_beam(beam, increment, board, r, c);
+//         if (beam == '-') { c += increment; }
+//         else { r += increment; }
+//         flag = true;
+//         //continue;
+//       }
+//       // if it is a question mark end
+//       else if (r < height && r >= 0 && c >= 0 && board[r][c] == '?') {
+//         last_row = r;
+//         last_col = c;
+//         //*message = '\0';
+//         return false;
+//       }
+//       else if (r < height && r >= 0 && c >= 0 && board[r][c] == '#') {
+//         //*message = '\0';
+//         return false;
+//       }
+//       else if (r < height && r >= 0 && c >= 0 && board[r][c] == '@') {
+//         last_row = r;
+//         last_col = c;
+//         //*message = '\0';
+//         return true;
+//       }
+//     }
+//     if (flag == false && r < height && r >= 0 && c < width && c >= 0) {
+//       board[r][c] = beam;
+//       if (beam == '-') { c += increment; }
+//       else { r += increment; }
+//     }
+//   } 
+//   return false;
+// }
+
+// bool solve(char** board, int height, int width, char* target) {
+//   int row;
+//     // find the starting point
+//     find_laser(board, height, width, row);
+//     if (row == -1) {
+//         *target = '\0';
+//         return false;
+//     }
+//   // how do i update lr and lc in recursive calls?
+//   int lr = row, lc = 1;
+
+//   char beam = '-';
+//   int increment = 1;
+//   // base case
+//   // if (board[lr][lc] == '@')
+//   print_board(board, height, width);
+//   if (shoot_question(board, height, width, target+1, beam, increment, lr, lc)) {
+//     return true;
+//   }
+//   //int lr_question = lr;
+//   //int lc_question = lc;
+//   if (board[lr][lc] == '?'){
+//     char symbols[18] = {'\\', '/', ' ', '\\', '/', ' ', '\\', '/', ' ', '\\', '/', ' ', '\\', '/', ' ', '\\', '/', ' '};
+//     for (int i = 0; i < 18; i++) {
+//       // recursive backtrackin
+//       // l'ultima cella della chiamata precedente (=?) fa ripartire lo shoot
+//       board[lr][lc] = symbols[i];
+      
+//       print_board(board, height, width);
+//       bool done = shoot_question(board, height, width, target+1, beam, increment, lr, lc);
+//       if (done) return true;
+//     }
+//   } else {
+//     // ended on '#' having tried all the combinations
+//     return false;
+//   }
+// }
