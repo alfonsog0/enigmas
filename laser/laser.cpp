@@ -115,24 +115,6 @@ bool find_laser(char** board, int height, int width, int& row) {
     return false;
 }
 
-// char mirror_label(char** board, int height, int width, int row, int column) {
-//     //cout << "height: " << height << endl << "width: " << width << endl;
-//     if (isspace(board[row][column])) {
-//         return '\0';
-//     }
-//     int start_row = row - 1;
-//     int start_col = column - 1;
-//     for (int r = start_row; r <= row + 1; r++) {
-//         for (int c = start_col; c <= column + 1; c++) {
-//             if (r < 0 || r >= height || c < 0 || c >= width) continue;
-//             if (isalpha(board[r][c])) {
-//                 return board[r][c];
-//             }
-//         }
-//     }
-//     return '\0';
-// }
-
 char mirror_label(char** board, int height, int width, int row, int column) {
   //cout << "height: " << height << endl << "width: " << width << endl;
   if (board[row][column]!= '\\' && board[row][column]!= '/') {
