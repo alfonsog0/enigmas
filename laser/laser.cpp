@@ -285,6 +285,55 @@ bool shoot(char** board, int height, int width, char* message, int& last_row, in
   return false;
 }
 
+bool find_next_question(char** board, int height, int width, int start_row, int start_col, int& q_r, int& q_c) {
+  for (int r = start_row; r < height; r++) {
+    for (int c = start_col; c < width; c++) {
+      if (board[r][c] == '?') {
+        q_r = r;
+        q_c = c;
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
+bool board_matches_target(char** board, int height, int width, const char* target) {
+  char message[512];
+  int last_row, lasr_col;
+
+  bool success = shoot(board, height, width, message, last_row, lasr_col);
+  if (!success) return false;
+
+  return (strcmp(message, target) == 0);
+}
+
+bool solve_recursive(char** board, int height, int width, const char* target, int start_row, int start_col) {
+  // base case if there are no '?' anymore
+  int q_r, q_c;
+  if (!find_next_question(board, height, width, start_row, start_col, q_r, q_c)) {
+    // no '?' left => check if this board solves the puzzle
+    return board_matches_target(board, height, width, target);
+  }
+
+  const char candidates[3] = {'\\', '/', ' '};
+  for (char symbol : candidates) {
+    board[q_r][q_c] = symbol;
+
+    if (solve_recursive(board, height, width, target, q_r, q_c)) {
+      return true;
+    }
+  }
+
+  // optional: restore '?' for clarity
+  board[q_r][q_c] = '?';
+  return false;
+}
+
+bool solve(char** board, int height, int width, const char* target) {
+  return solve_recursive(board, height, width, target, 0, 0);
+}
+
 // /* starts from last_row and last_col to find a new path*/
 // bool shoot_question(char** board, int height, int width, char* message, char& beam, int& increment, int& last_row, int& last_col) {
 //   int r = last_row;

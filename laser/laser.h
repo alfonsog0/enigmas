@@ -15,5 +15,8 @@ char mirror_label(char** board, int height, int width, int row, int column);
 void change_beam(char& beam, int& increment, char** board, int r, int c);
 bool shoot(char** board, int height, int width, char* message, int& last_row, int& last_col);
 
-bool shoot_question(char** board, int height, int width, char* message, char& beam, int& increment, int& last_row, int& last_col);
-bool solve(char** board, int height, int width, char* target);
+bool find_next_question(char** board, int height, int width, int start_row, int start_col, int& q_r, int& q_c);
+bool board_matches_target(char** board, int height, int width, const char* target);
+bool solve_recursive(char** board, int height, int width, const char* target, int start_row, int start_col);
+//bool shoot_question(char** board, int height, int width, char* message, char& beam, int& increment, int& last_row, int& last_col);
+bool solve(char** board, int height, int width, const char* target);
