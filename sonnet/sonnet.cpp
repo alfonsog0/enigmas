@@ -4,6 +4,7 @@
 #include <cassert>
 #include <map>
 #include <string>
+#include <fstream>
 
 using namespace std;
 
@@ -102,4 +103,40 @@ int count_words(const char* line) {
     prev++;
   }
   return count_spaces + 1;
+}
+
+bool find_phonetic_ending(const char* word, char* phonetic_ending) {
+	ifstream file("dictionary.txt");
+	char line[256];
+
+	// loop through it until you find the line containing 'word' at the beginnig
+	while (file.getline(line, sizeof(line))) {
+		char first_word[128];
+		get_word(line, 1, first_word);
+		if (strcmp(first_word, word) == 0) {
+			// get the phonetic ending from that line and store it into phoonetic_ending
+			int line_len = strlen(line);
+
+			int count_letters = 0;
+			int count_spaces = 0;
+			for (int i = 1; i < line_len; i++) {
+				if (isalpha(line[line_len - i])) count_letters++;
+				else if (line[line_len - i] == ' ') count_spaces++;
+				if (line[line_len - i] == 'A' || line[line_len - i] == 'E' 
+					|| line[line_len - i] == 'I' || line[line_len - i] == 'O' 
+					|| line[line_len - i] == 'U') {
+						break;
+				}
+			}
+			for (int j = (count_letters + count_spaces); j > 0; j--) {
+				if (line[line_len - j] != ' ') {
+					*phonetic_ending = line[line_len - j];
+					phonetic_ending++;
+				}
+			}
+			*phonetic_ending = '\0';
+			return true;
+		}
+	}
+	return false;
 }

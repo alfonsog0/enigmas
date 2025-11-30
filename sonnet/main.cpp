@@ -44,29 +44,29 @@ int main() {
 
   cout << endl;
 
-  // // Question 2
-  // cout << "====================== Question 2 ======================" << endl << endl;
+  // Question 2
+  cout << "====================== Question 2 ======================" << endl << endl;
 
-  // char phonetics[512];
-  // find_phonetic_ending("DAY", phonetics);
-  // cout << "DAY has phonetic ending " << phonetics << endl;
+  char phonetics[512];
+  find_phonetic_ending("DAY", phonetics);
+  cout << "DAY has phonetic ending " << phonetics << endl;
 
-  // find_phonetic_ending("MAY", phonetics);
-  // cout << "MAY has phonetic ending " << phonetics << endl;
+  find_phonetic_ending("MAY", phonetics);
+  cout << "MAY has phonetic ending " << phonetics << endl;
 
-  // find_phonetic_ending("CONVICT", phonetics);
-  // cout << "CONVICT has phonetic ending " << phonetics << endl;
+  find_phonetic_ending("CONVICT", phonetics);
+  cout << "CONVICT has phonetic ending " << phonetics << endl;
 
-  // find_phonetic_ending("PICKED", phonetics);
-  // cout << "PICKED has phonetic ending " << phonetics << endl;
+  find_phonetic_ending("PICKED", phonetics);
+  cout << "PICKED has phonetic ending " << phonetics << endl;
 
-  // find_phonetic_ending("FLAWS", phonetics);
-  // cout << "FLAWS has phonetic ending " << phonetics << endl;
+  find_phonetic_ending("FLAWS", phonetics);
+  cout << "FLAWS has phonetic ending " << phonetics << endl;
 
-  // find_phonetic_ending("PAUSE", phonetics);
-  // cout << "PAUSE has phonetic ending " << phonetics << endl;
+  find_phonetic_ending("PAUSE", phonetics);
+  cout << "PAUSE has phonetic ending " << phonetics << endl;
 
-  // cout << endl;
+  cout << endl;
 
   // // Question 3
   // cout << "====================== Question 3 ======================" << endl << endl;

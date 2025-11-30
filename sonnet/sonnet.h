@@ -21,3 +21,11 @@ char rhyming_letter(const char *ending);
 
 /* returns the number of words in a given input string line */
 int count_words(const char* line);
+
+/* uses the phonetic dictionary in the file dictionary.txt to
+construct the phonetic ending for the (uppercase) word contained
+in the input parameter word. If this word is in the phonetic dic-
+tionary, the corresponding phonetic ending should be stored in
+the output parameter phonetic ending, and the function should
+return true. Otherwise the function should return false. */
+bool find_phonetic_ending(const char* word, char* phonetic_ending);
