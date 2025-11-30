@@ -29,3 +29,9 @@ tionary, the corresponding phonetic ending should be stored in
 the output parameter phonetic ending, and the function should
 return true. Otherwise the function should return false. */
 bool find_phonetic_ending(const char* word, char* phonetic_ending);
+
+/* produces in the output parameter scheme the rhyme scheme for
+the sonnet contained in the file filename. If the file does not exist,
+the function should return false; otherwise the function should
+return true. */
+bool find_rhyme_scheme(const char* filename, char* scheme);

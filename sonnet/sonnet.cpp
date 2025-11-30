@@ -107,6 +107,7 @@ int count_words(const char* line) {
 
 bool find_phonetic_ending(const char* word, char* phonetic_ending) {
 	ifstream file("dictionary.txt");
+	if (!file) return false;
 	char line[256];
 
 	// loop through it until you find the line containing 'word' at the beginnig
@@ -141,3 +142,30 @@ bool find_phonetic_ending(const char* word, char* phonetic_ending) {
 	}
 	return false;
 }
+
+// bool find_rhyme_scheme(const char* filename, char* scheme) {
+// 	ifstream file(filename);
+// 	if (!file) return false;
+// 	char line[256];
+
+// 	while(file.getline(line, sizeof(line))) {
+// 		int len = strlen(line);
+
+// 		char* word = nullptr;
+// 		char* word1 = word;
+// 		int word_len = 0;
+// 		// get len of last word
+// 		for (int i = 1; i < len; i++){
+// 			if (line[len] == ' ') break;
+// 			word_len++;
+// 		}
+// 		// write last word into *word
+// 		for (int i = word_len; i > 0; i--) {
+// 			*word = line[len-i];
+// 			word++;
+// 		}
+// 		*scheme = rhyming_letter(word1);
+// 		scheme++;
+// 	}
+// 	return true;
+// }
