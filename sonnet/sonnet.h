@@ -18,3 +18,6 @@ bool get_word(const char *input_line, int number, char *output_word);
    poem) by calling rhyming_letter(RESET). */
 
 char rhyming_letter(const char *ending);
+
+/* returns the number of words in a given input string line */
+int count_words(const char* line);

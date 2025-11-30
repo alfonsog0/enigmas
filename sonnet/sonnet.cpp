@@ -90,3 +90,16 @@ char rhyming_letter(const char *ending) {
 }
 
 /* START WRITING YOUR FUNCTION BODIES HERE */
+int count_words(const char* line) {
+  const char* line_ptr = line;
+  if (*line_ptr== '\0') return 0;
+  int count_spaces = 0;
+  const char* prev = line_ptr;
+  line_ptr++;
+  while (*line_ptr != '\0') {
+    if (*line_ptr == ' ' && *prev != ' ') count_spaces++;
+    line_ptr++;
+    prev++;
+  }
+  return count_spaces + 1;
+}

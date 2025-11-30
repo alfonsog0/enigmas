@@ -32,17 +32,17 @@ int main() {
 
   cout << endl;
 
-  // // Question 1
-  // cout << "====================== Question 1 ======================" << endl << endl;
+  // Question 1
+  cout << "====================== Question 1 ======================" << endl << endl;
 
-  // cout << "The line \"It's  not so easy!\" contains ";
-  // cout << count_words("It's  not so easy!") << " words" << endl;
-  // cout << "The line \"\" contains ";
-  // cout << count_words("") << " words" << endl;
-  // cout << "The line \"Shall I compare thee to a Summer's day?\" contains ";
-  // cout << count_words("Shall I compare thee to a Summer's day?") << " words" << endl;
+  cout << "The line \"It's  not so easy!\" contains ";
+  cout << count_words("It's  not so easy!") << " words" << endl;
+  cout << "The line \"\" contains ";
+  cout << count_words("") << " words" << endl;
+  cout << "The line \"Shall I compare thee to a Summer's day?\" contains ";
+  cout << count_words("Shall I compare thee to a Summer's day?") << " words" << endl;
 
-  // cout << endl;
+  cout << endl;
 
   // // Question 2
   // cout << "====================== Question 2 ======================" << endl << endl;
