@@ -125,6 +125,7 @@ bool find_phonetic_ending(const char* word, char* phonetic_ending) {
 				if (line[line_len - i] == 'A' || line[line_len - i] == 'E' 
 					|| line[line_len - i] == 'I' || line[line_len - i] == 'O' 
 					|| line[line_len - i] == 'U') {
+						if (isalpha(line[line_len -i -1])) count_letters++;
 						break;
 				}
 			}
