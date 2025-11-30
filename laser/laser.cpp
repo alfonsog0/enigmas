@@ -287,7 +287,8 @@ bool shoot(char** board, int height, int width, char* message, int& last_row, in
 
 bool find_next_question(char** board, int height, int width, int start_row, int start_col, int& q_r, int& q_c) {
   for (int r = start_row; r < height; r++) {
-    for (int c = start_col; c < width; c++) {
+    int c_start = (r == start_row) ? start_col : 0;
+    for (int c = c_start; c < width; c++) {
       if (board[r][c] == '?') {
         q_r = r;
         q_c = c;
@@ -299,13 +300,29 @@ bool find_next_question(char** board, int height, int width, int start_row, int 
 }
 
 bool board_matches_target(char** board, int height, int width, const char* target) {
-  char message[512];
-  int last_row, lasr_col;
+    // 1) Make a copy of the board
+    char** temp = new char*[height];
+    for (int r = 0; r < height; ++r) {
+        temp[r] = new char[width];
+        for (int c = 0; c < width; ++c) {
+            temp[r][c] = board[r][c];
+        }
+    }
 
-  bool success = shoot(board, height, width, message, last_row, lasr_col);
-  if (!success) return false;
+    // 2) Run shoot on the copy
+    char message[512];
+    int last_row, last_col;
+    bool success = shoot(temp, height, width, message, last_row, last_col);
 
-  return (strcmp(message, target) == 0);
+    // 3) Free the copy
+    for (int r = 0; r < height; ++r) {
+        delete[] temp[r];
+    }
+    delete[] temp;
+
+    // 4) Check result
+    if (!success) return false;
+    return strcmp(message, target) == 0;
 }
 
 bool solve_recursive(char** board, int height, int width, const char* target, int start_row, int start_col) {
