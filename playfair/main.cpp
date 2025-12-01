@@ -8,14 +8,14 @@ int main() {
 
   // question 1 
 
-  // cout << "====================== Question 1 ======================" << endl;
+  cout << "====================== Question 1 ======================" << endl;
 
-  // char prepared[100];
-  // prepare("Come to the Queen's Tower at 7 o'clock!",prepared);
+  char prepared[100];
+  prepare("Come to the Queen's Tower at 7 o'clock!",prepared);
 
-  // cout << "'Come to the Queen's Tower at 7 o'clock!' has been prepared for ";
-  // cout << "encoding as:" << endl;
-  // cout << "'" << prepared << "'." << endl << endl;
+  cout << "'Come to the Queen's Tower at 7 o'clock!' has been prepared for ";
+  cout << "encoding as:" << endl;
+  cout << "'" << prepared << "'." << endl << endl;
 
   // // question 2  
 
