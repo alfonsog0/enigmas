@@ -14,6 +14,15 @@ string containing an input sentence. The second parameter (i.e.
 output) is the prepared output sentence. */
 void prepare(const char* input, char* output);
 
+/* produces the 6x6
+Playfair square (encoding grid) corresponding to a given code
+word. The first parameter to the function (i.e. codeword) is an
+input string containing a code word (e.g. IMPERIAL). You may assume
+that the code word consists of upper case letters and digits
+only. The second parameter (i.e. square) is an output parameter
+which takes the form of a two-dimensional array of characters
+representing the encoding grid. */
+void grid(const char* codeword, char square[6][6]);
 
 
 #endif

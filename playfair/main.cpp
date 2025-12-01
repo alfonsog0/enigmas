@@ -19,18 +19,34 @@ int main() {
 
   // // question 2  
 
-  // cout << "====================== Question 2 ======================" << endl;
-
-  // char playfair[6][6];
-  // grid("IMPERIAL",playfair);
-
-  // cout << "The encoding grid corresponding to the codeword 'IMPERIAL' is:" << endl;
-  // for (int row=0; row<6; row++) {
-  //   for (int col=0; col<6; col++) 
-  //     cout << ((isalnum(playfair[row][col])) ? playfair[row][col] : '?') << ' ';
-  //   cout << endl;
+  cout << "====================== Question 2 ======================" << endl;
+  
+  // // personal tests for printing
+  // char alphanum[2][36];
+  // int counter = 0;
+  // for (char letter = 'A'; letter <= 'Z'; letter++) {
+  //     alphanum[0][letter - 'A'] = letter;
+  //     counter++;
   // }
-  // cout << endl;
+  // for (char num = '0'; num <= '9'; num++) {
+  //     alphanum[0][counter + num - '0'] = num;
+  // }
+  // for ( int bitmap = 0; bitmap < 36; bitmap++) {
+  //     alphanum[1][bitmap] = '0';
+  // }
+  // for (int i = 0; i < 36; i++)
+  //   cout << alphanum[0][i] << endl;
+
+  char playfair[6][6];
+  grid("IMPERIAL",playfair);
+
+  cout << "The encoding grid corresponding to the codeword 'IMPERIAL' is:" << endl;
+  for (int row=0; row<6; row++) {
+    for (int col=0; col<6; col++) 
+      cout << ((isalnum(playfair[row][col])) ? playfair[row][col] : '?') << ' ';
+    cout << endl;
+  }
+  cout << endl;
 
   // // question 3
 
