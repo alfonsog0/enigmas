@@ -72,7 +72,7 @@ int main() {
 
   // bonus question (uncomment to attempt)
 
-  /*
+  
   cout << "==================== Bonus Question ====================" << endl;
 
   char decoded[100];
@@ -80,7 +80,7 @@ int main() {
 
   cout << "The string 'VEKVPDQIQDEDEMMVEHSJPVHENOGMIRHVVMEG' decodes as:" << endl;
   cout << "'" << decoded << "'" << endl;
-  */
+  
  
   return 0;
 }

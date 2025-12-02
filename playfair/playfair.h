@@ -55,4 +55,6 @@ should result in the string encoded having the value:
 FKEMWJSJANVPENTSOWREMX8NLCKFQU */
 void encode(const char square[6][6], const char* prepared, char* encoded);
 
+void decode(const char square[6][6], const char* encoded, char* decoded);
+
 #endif

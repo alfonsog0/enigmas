@@ -110,3 +110,18 @@ void encode(const char square[6][6], const char* prepared, char* encoded) {
 
     encode(square, prepared + 2, encoded + 2);
 }
+
+void decode(const char square[6][6], const char* encoded, char* decoded) {
+    //base case
+    if (*encoded == '\0') {
+        *decoded = '\0';
+        return;
+    }
+    // const char* prepared_ptr2 = prepared;
+    // prepared_ptr2++;
+    // const char* prepared_ptr1 = prepared;
+    // bigram(square, *prepared_ptr1, *prepared_ptr2, *encoded, *(encoded + 1));
+    bigram(square, encoded[0], encoded[1], decoded[0], decoded[1]);
+
+    encode(square, encoded + 2, decoded + 2);
+}
