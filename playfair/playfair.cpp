@@ -7,15 +7,19 @@ using namespace std;
 void prepare(const char* input, char* output) {
     const char* input_ptr = input;
 
+    int count_char = 0;
     while (*input_ptr != '\0') {
         if (isalnum(*input_ptr)) {
             *output = toupper(*input_ptr);
             output++;
         }
         input_ptr++;
+        count_char++;
     }
-    *output = 'X';
-    output++;
+    if (count_char % 2) {
+        *output = 'X';
+        output++;
+    }
     *output = '\0';
 }
 
@@ -92,3 +96,6 @@ void bigram(char square[6][6], const char inchar1, const char inchar2, char& out
     outchar2 = square[r2][c1];
 }
 
+void encode(char square[6][6], const char* prepared, char* encoded) {
+
+}
