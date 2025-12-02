@@ -97,5 +97,17 @@ void bigram(char square[6][6], const char inchar1, const char inchar2, char& out
 }
 
 void encode(char square[6][6], const char* prepared, char* encoded) {
+    //base case
+    const char* end = prepared;
+    if (*(end) == '\0') {
+        *encoded = '\0';
+        return;
+    }
+    const char* prepared_ptr2 = prepared;
+    prepared_ptr2++;
+    const char* prepared_ptr1 = prepared;
 
+    bigram(square, *prepared_ptr1, *prepared_ptr2, *encoded, *(encoded + 1));
+
+    encode(square, prepared + 2, encoded + 2);
 }

@@ -61,14 +61,14 @@ int main() {
 
   cout << "The bigram 'N9' encodes as '" << out1 << out2 << "'" << endl << endl;
 
-  // // question 4
-  // cout << "====================== Question 4 ======================" << endl;
+  // question 4
+  cout << "====================== Question 4 ======================" << endl;
 
-  // char encoded[100];
-  // encode(playfair, prepared, encoded);
+  char encoded[100];
+  encode(playfair, prepared, encoded);
 
-  // cout << "The string '" << prepared << "' encodes as:" << endl;
-  // cout << "'" << encoded << "'" << endl << endl;
+  cout << "The string '" << prepared << "' encodes as:" << endl;
+  cout << "'" << encoded << "'" << endl << endl;
 
   // bonus question (uncomment to attempt)
 
