@@ -24,5 +24,20 @@ which takes the form of a two-dimensional array of characters
 representing the encoding grid. */
 void grid(const char* codeword, char square[6][6]);
 
+/* encodes a single bigram (two letter pair) using
+a given encoding grid. The parameters are as follows:
+ square is the encoding grid to be used to encode the bigram.
+ inchar1 and inchar2 are two character input parameters
+making up the bigram to be encoded.
+ outchar1 and outchar2 are two character output (reference)
+parameters representing the encoded bigram.
+For example, the code:
+char playfair[6][6];
+grid("IMPERIAL",playfair);
+char out1, out2;
+bigram(playfair,’C’,’O’,out1,out2);
+should result in out1 and out2 having the values ’F’ and ’K’
+respectively. */
+void bigram(char square[6][6],const char inchar1, const char inchar2, char& outchar1, char& outchar2);
 
 #endif
