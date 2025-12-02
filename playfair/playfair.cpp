@@ -76,7 +76,7 @@ void grid(const char* codeword, char square[6][6]) {
     }
 }
 
-void bigram(char square[6][6], const char inchar1, const char inchar2, char& outchar1, char& outchar2) {
+void bigram(const char square[6][6], const char inchar1, const char inchar2, char& outchar1, char& outchar2) {
     int r1, c1, r2, c2;
 
     for (int r = 0; r < 6; r++) {
@@ -96,18 +96,17 @@ void bigram(char square[6][6], const char inchar1, const char inchar2, char& out
     outchar2 = square[r2][c1];
 }
 
-void encode(char square[6][6], const char* prepared, char* encoded) {
+void encode(const char square[6][6], const char* prepared, char* encoded) {
     //base case
-    const char* end = prepared;
-    if (*(end) == '\0') {
+    if (*prepared == '\0') {
         *encoded = '\0';
         return;
     }
-    const char* prepared_ptr2 = prepared;
-    prepared_ptr2++;
-    const char* prepared_ptr1 = prepared;
-
-    bigram(square, *prepared_ptr1, *prepared_ptr2, *encoded, *(encoded + 1));
+    // const char* prepared_ptr2 = prepared;
+    // prepared_ptr2++;
+    // const char* prepared_ptr1 = prepared;
+    // bigram(square, *prepared_ptr1, *prepared_ptr2, *encoded, *(encoded + 1));
+    bigram(square, prepared[0], prepared[1], encoded[0], encoded[1]);
 
     encode(square, prepared + 2, encoded + 2);
 }

@@ -38,7 +38,7 @@ char out1, out2;
 bigram(playfair,’C’,’O’,out1,out2);
 should result in out1 and out2 having the values ’F’ and ’K’
 respectively. */
-void bigram(char square[6][6],const char inchar1, const char inchar2, char& outchar1, char& outchar2);
+void bigram(const char square[6][6],const char inchar1, const char inchar2, char& outchar1, char& outchar2);
 
 /* encodes a prepared input string using a given encoding grid. The
 parameters are as follows:
@@ -53,6 +53,6 @@ char encoded[100];
 encode(playfair,"COMETOTHEQUEENSTOWERAT7OCLOCKX",encoded);
 should result in the string encoded having the value:
 FKEMWJSJANVPENTSOWREMX8NLCKFQU */
-void encode(char square[6][6], const char* prepared, char* encoded);
+void encode(const char square[6][6], const char* prepared, char* encoded);
 
 #endif
