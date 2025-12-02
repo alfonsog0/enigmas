@@ -33,8 +33,6 @@ void grid(const char* codeword, char square[6][6]) {
     for ( int bitmap = 0; bitmap < 36; bitmap++) {
         alphanum[1][bitmap] = '0';
     }
-    // for (int i = 0; i < 36; i++)
-    //     cout << alphanum[0][i] << endl;
 
     const char* codeword_ptr = codeword;
     char* alphanum_ptr = alphanum[0];
@@ -50,10 +48,11 @@ void grid(const char* codeword, char square[6][6]) {
                 letter = alphanum_ptr;
                 alphanum_ptr++;
             }
+            //if (*letter == '\0') break;
             if (isnumber(*letter)) {
-                if (alphanum[1][static_cast<char>(*letter) - '0'] == '0') {
+                if (alphanum[1][static_cast<char>(*letter) - 22] == '0') {
                     square[r][c] = *letter;
-                    alphanum[1][static_cast<char>(*letter) - '0'] = 1;
+                    alphanum[1][static_cast<char>(*letter) - 22] = 1;
                     flag = true;
                 }
             }
@@ -64,30 +63,9 @@ void grid(const char* codeword, char square[6][6]) {
                     flag = true;
                 }
             }
-            else if (!flag) {
+            if (!flag) {
                 c--;
             }
-            // while (alphanum[1][static_cast<char>(*letter) - '0'] == '0' || alphanum[1][static_cast<char>(*letter) - 'A'] == '0') {
-            //     if (isnumber(*letter)) {
-                
-            //         square[r][c] = *letter;
-            //         alphanum[1][static_cast<char>(*letter) - '0'] = 1;
-            //         break;
-            //     }
-            //     else if (isalpha(*letter)) {
-                
-            //         square[r][c] = *letter;
-            //         alphanum[1][static_cast<char>(*letter) - 'A'] = 1;
-            //         break;
-            //     }
-            //     if (*(++letter) != '\0') continue;
-            // }
-            // if la bit map è 0
-         
-                //aggiungi a square
-
-                // modifica bitmap = 1
-            // else bitmap 
         }
     }
 }
