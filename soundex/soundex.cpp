@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cctype>
+#include <cstring>
 #include "soundex.h"
 
 using namespace std;
@@ -21,7 +22,7 @@ char letter_to_soundex(const char letter) {
     case 'A': case 'E': case 'H': case 'I': case 'O': case 'U': case 'W': case 'Y':
         return ' ';
     default:
-        break;
+        return ' ';
     }
 }
 
@@ -53,7 +54,6 @@ void encode(const char* surname, char* soundex) {
         surname_ptr++;
     }
     // count length of soundex
-    
     while (soundex_len < 4) { 
         *soundex_ptr = '0';
         soundex_ptr++;
@@ -62,4 +62,45 @@ void encode(const char* surname, char* soundex) {
     if (soundex_len == 4) {
         *soundex_ptr = '\0';
     }
+}
+
+int compare(const char* one, const char* two) {
+	// base case
+	if (*one == '\0' && *two == '\0') return 1;
+	//if (*one == '\0' && *two != '\0' || *one != '\0' && *two == '\0') return 0;
+
+	if (*one == *two) {
+		if (compare(one + 1, two + 1)) return 1;
+	}
+	return 0;
+}
+
+int count(const char* surname, const char* sentence) {
+	// encode the surname
+	char soundex[5];
+	encode(surname, soundex);
+	char word[16];
+	int word_idx = 0;
+	char word_soundex[5];
+	int same_soundex_counter = 0;
+
+	// encode every word in the sentence
+	const char* sentence_ptr = sentence;
+
+	while (*sentence_ptr != '\0') {
+		if (*sentence_ptr != ' ' && *sentence_ptr != ',') {
+			word[word_idx] = *sentence_ptr;
+			word_idx++;
+		}
+		else if (word_idx != 0) {
+			word[word_idx] = '\0';
+			word_idx = 0;
+			encode(word, word_soundex);
+			if (compare(soundex, word_soundex)) same_soundex_counter++;
+		}
+		sentence_ptr++;
+	}
+	return same_soundex_counter;
+
+	// compare with what is surname encoded
 }
