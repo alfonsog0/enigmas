@@ -8,4 +8,4 @@ main.o: soundex.h main.cpp
 	g++ -g -O0 -c main.cpp -o main.o
 
 clean:
- 	rm -rf *.o soundex
+	rm -rf *.o soundex
