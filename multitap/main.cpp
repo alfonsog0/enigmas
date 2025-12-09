@@ -12,25 +12,25 @@ int main() {
 
   multitap[0] = '\0';
 
-  // cout << "====================== Question 1 ======================" << endl << endl;
+  cout << "====================== Question 1 ======================" << endl << endl;
 
-  // size = encode_character('c', multitap);
-  // cout << "The character 'c' encoded in multitap is '" << multitap << "' (" << size << " keystrokes)" << endl;
+  size = encode_character('c', multitap);
+  cout << "The character 'c' encoded in multitap is '" << multitap << "' (" << size << " keystrokes)" << endl;
 
-  // size = encode_character('5', multitap);
-  // cout << "The character '5' encoded in multitap is '" << multitap << "' (" << size << " keystrokes)" << endl;
+  size = encode_character('5', multitap);
+  cout << "The character '5' encoded in multitap is '" << multitap << "' (" << size << " keystrokes)" << endl;
 
-  // size = encode_character('Q', multitap);
-  // cout << "The character 'Q' encoded in multitap is '" << multitap << "' (" << size << " keystrokes)" << endl;
+  size = encode_character('Q', multitap);
+  cout << "The character 'Q' encoded in multitap is '" << multitap << "' (" << size << " keystrokes)" << endl;
 
-  // size = encode_character(' ', multitap);
-  // cout << "The character ' ' encoded in multitap is '" << multitap << "' (" << size << " keystrokes)" << endl;
+  size = encode_character(' ', multitap);
+  cout << "The character ' ' encoded in multitap is '" << multitap << "' (" << size << " keystrokes)" << endl;
 
-  // size = encode_character(',', multitap);
-  // cout << "The character ',' encoded in multitap is '" << multitap << "' (" << size << " keystrokes)" << endl;
+  size = encode_character(',', multitap);
+  cout << "The character ',' encoded in multitap is '" << multitap << "' (" << size << " keystrokes)" << endl;
   
-  // cout << endl;
-  // multitap[0] = '\0';
+  cout << endl;
+  multitap[0] = '\0';
 
   // cout << "====================== Question 2 ======================" << endl << endl;
 
