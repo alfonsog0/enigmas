@@ -75,7 +75,7 @@ void encode(const char* plaintext, char* multitap) {
         // if it's not the last character
         if(*plaintext_ptr_front != '\0') {
             // encode the forward char
-            char forward_char[2];
+            char forward_char[4];
             int size_forward = encode_character(*plaintext_ptr_front, forward_char);
             // check if the capitalisation changes (toggle) --> add '#' key
             if (isupper(*plaintext_ptr_back) && !isupper(*plaintext_ptr_front) ||
@@ -97,3 +97,6 @@ void encode(const char* plaintext, char* multitap) {
     *multitap_ptr = '\0';
 }
 
+void decode(ifstream& input, ofstream& output) {
+
+}
