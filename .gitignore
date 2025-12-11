@@ -12,6 +12,7 @@ spec.pdf
 !*/*.cpp
 !*/*.h
 !*/*.txt
+!*/*.dat
 
 # output files
 doublets/chain.txt
